@@ -11,7 +11,7 @@
     <!-- Logo -->
     <div class="flex items-center justify-between mb-6">
         <span x-show="open" class="font-bold text-lg text-indigo-600">
-            IT Inventory
+            Inventario IT
         </span>
 
         <button @click="open = !open"
@@ -25,24 +25,114 @@
     <nav class="flex-1 p-4 space-y-2 text-gray-900 dark:text-gray-200">
 
         <a href="#"
-            class="flex items-center gap-3 p-3 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700 transition {{ request()->is('dashboard') ? 'bg-indigo-100 dark:bg-slate-700' : '' }}">
+            class="flex items-center gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700 transition {{ request()->is('dashboard') ? 'bg-indigo-100 dark:bg-slate-700' : '' }}">
             <x-wireui-icon name="home" class="w-5 h-5" />
             <span x-show="open">Dashboard</span>
         </a>
 
-        <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
-            <x-wireui-icon name="server" class="w-5 h-5" />
-            <span x-show="open">Hardware Assets</span>
-        </a>
+        <div x-data="{ openMnu: false }">
+            <a href="#" @click="openMnu = !openMnu"
+                class="flex justify-between items-center gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
+                <div class="flex">
+                    <x-wireui-icon name="clipboard-document-list" class="w-5 h-5" />
+                    <span x-show="open" class="pl-2">Catálogos</span>
+                </div>
+                <x-wireui-icon x-show="!openMnu" name="chevron-down" class="w-5 h-5" />
+                <x-wireui-icon x-show="openMnu" name="chevron-up" class="w-5 h-5" />
+            </a>
 
-        <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
-            <x-wireui-icon name="users" class="w-5 h-5" />
-            <span x-show="open">Employees</span>
-        </a>
+            <!-- Collapsible Menu Content -->
+            <div x-show="openMnu" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95" class="px-4 pb-4">
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    1</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    2</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    3</a>
+            </div>
+        </div>
 
-        <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
-            <x-wireui-icon name="clipboard-document-list" class="w-5 h-5" />
-            <span x-show="open">Reports</span>
+        <div x-data="{ openMnu: false }">
+            <a href="#" @click="openMnu = !openMnu"
+                class="flex justify-between items-center gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
+                <div class="flex">
+                    <x-wireui-icon name="arrow-path" class="w-5 h-5" />
+                    <span x-show="open" class="pl-2">Procesos</span>
+                </div>
+                <x-wireui-icon x-show="!openMnu" name="chevron-down" class="w-5 h-5" />
+                <x-wireui-icon x-show="openMnu" name="chevron-up" class="w-5 h-5" />
+            </a>
+
+            <!-- Collapsible Menu Content -->
+            <div x-show="openMnu" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95" class="px-4 pb-4">
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    1</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    2</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    3</a>
+            </div>
+        </div>
+
+        <div x-data="{ openMnu: false }">
+            <a href="#" @click="openMnu = !openMnu"
+                class="flex justify-between items-center gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
+                <div class="flex">
+                    <x-wireui-icon name="document-chart-bar" class="w-5 h-5" />
+                    <span x-show="open" class="pl-2">Reportes</span>
+                </div>
+                <x-wireui-icon x-show="!openMnu" name="chevron-down" class="w-5 h-5" />
+                <x-wireui-icon x-show="openMnu" name="chevron-up" class="w-5 h-5" />
+            </a>
+
+            <!-- Collapsible Menu Content -->
+            <div x-show="openMnu" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95" class="px-4 pb-4">
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    1</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    2</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    3</a>
+            </div>
+        </div>
+
+        <div x-data="{ openMnu: false }">
+            <a href="#" @click="openMnu = !openMnu"
+                class="flex justify-between items-center gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
+                <div class="flex">
+                    <x-wireui-icon name="lock-closed" class="w-5 h-5" />
+                    <span x-show="open" class="pl-2">Seguridad</span>
+                </div>
+                <x-wireui-icon x-show="!openMnu" name="chevron-down" class="w-5 h-5" />
+                <x-wireui-icon x-show="openMnu" name="chevron-up" class="w-5 h-5" />
+            </a>
+
+            <!-- Collapsible Menu Content -->
+            <div x-show="openMnu" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95" class="px-4 pb-4">
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    1</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    2</a>
+                <a href="#" class="block gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">Item
+                    3</a>
+            </div>
+        </div>
+
+        <a href="#" class="flex items-center gap-2 p-2 rounded-lg hover:bg-indigo-100 dark:hover:bg-slate-700">
+            <x-wireui-icon name="cog-6-tooth" class="w-5 h-5" />
+            <span x-show="open">Configuración</span>
         </a>
 
     </nav>

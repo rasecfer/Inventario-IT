@@ -27,8 +27,8 @@
 </head>
 
 <body
-    class="bg-gradient-to-br from-gray-100 to-gray-200
-             dark:from-slate-900 dark:to-slate-950
+    class="bg-gradient-to-br from-gray-100 to-gray-300
+             dark:from-slate-600 dark:to-slate-950
              transition-all duration-500">
     <div class="flex h-screen overflow-hidden p-4 gap-4">
         <!-- Overlay móvil -->
@@ -51,23 +51,14 @@
         function themeHandler() {
             return {
                 dark: false,
-                sidebarOpen: false,
-                collapsed: true,
 
                 init() {
-                    if (
-                        localStorage.theme === 'dark' ||
-                        (!localStorage.theme &&
-                            window.matchMedia('(prefers-color-scheme: dark)').matches)
-                    ) {
-                        this.dark = true
-                    }
-                },
 
-                toggleCollapse() {
-                    this.collapsed = !this.collapsed
-                    alert(this.collapsed)
-                    localStorage.setItem('collapsed', this.collapsed)
+                    if (!localStorage.dark || (localStorage.dark === 'true' &&
+                            window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                        this.dark = true
+                        localStorage.setItem('dark', this.dark)
+                    }
                 },
 
                 toggleDark() {
