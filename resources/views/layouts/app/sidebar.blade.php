@@ -22,7 +22,8 @@
                 </flux:sidebar.item>
                 <flux:sidebar.group expandable icon="inbox-stack" heading="Catálogos" class="grid"
                     :expanded="false">
-                    <flux:sidebar.item href="#">Departamentos</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('departments')" :current="request()->routeIs('departments')"
+                        wire:navigate>Departamentos</flux:sidebar.item>
                     <flux:sidebar.item href="#">Empleados</flux:sidebar.item>
                     <flux:sidebar.item href="#">Arrendamientos</flux:sidebar.item>
                     <flux:sidebar.item href="#">Marca</flux:sidebar.item>

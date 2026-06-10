@@ -28,7 +28,7 @@
             <div
                 class="mb-6 flex items-center justify-between rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-green-800">
                 <span>{{ session('message') }}</span>
-                <button onclick="this.parentElement.remove()" class="text-green-600 hover:text-green-800">
+                <button onclick="this.parentElement.remove()" class="cursor-pointer text-green-600 hover:text-green-800">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
