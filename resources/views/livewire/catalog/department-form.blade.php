@@ -138,7 +138,7 @@
                     <!-- Body -->
                     <div class="px-6 py-6">
                         <div>
-                            <label for="title"
+                            <label for="name"
                                 class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Nombre <span class="text-red-500">*</span>
                             </label>
