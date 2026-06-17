@@ -2,15 +2,15 @@
 
 namespace App\Livewire\Catalog;
 
-use App\Models\Employee;
+use App\Models\Device;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Empleados')]
-class EmployeeList extends Component
+#[Title('Equipos')]
+class DeviceList extends Component
 {
-    // public $employees = [];
     public $search = '';
     public $sortBy = 'id';
 
@@ -27,13 +27,12 @@ class EmployeeList extends Component
     }
 
     #[Computed]
-    public function employees()
+    public function devices()
     {
-        $query = Employee::with('department');
+        $query = Device::with(['device_model', 'lease']);
 
         if ($this->search) {
-            $query->where('first_name', 'like', '%'.$this->search.'%')
-                ->orWhere('last_name', 'like', '%'.$this->search.'%');
+            $query->where('serial_number', 'like', '%'.$this->search.'%');
         }
 
         return $query->orderBy($this->sortBy, $this->sortDirection)->paginate(10);
@@ -41,8 +40,8 @@ class EmployeeList extends Component
 
     public function render()
     {
-        return view('livewire.catalog.employee-list', [
-            'employees' => $this->employees
+        return view('livewire.catalog.device-list', [
+            'devices' => $this->devices
         ]);
     }
 }

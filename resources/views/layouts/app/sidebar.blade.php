@@ -21,10 +21,10 @@
                     Dashboard
                 </flux:sidebar.item>
                 <flux:sidebar.group expandable icon="inbox-stack" heading="Catálogos" class="grid"
-                    :expanded="false">
+                    :expanded="request()->is('catalogs/*')">
                     <flux:sidebar.item :href="route('departments')" :current="request()->routeIs('departments')"
                         wire:navigate>Departamentos</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('employees')" :current="request()->routeIs('employees')"
+                    <flux:sidebar.item :href="route('employees')" :current="request()->routeIs('employees*')"
                         wire:navigate>Empleados</flux:sidebar.item>
                     <flux:sidebar.item :href="route('leases')" :current="request()->routeIs('leases')" wire:navigate>
                         Arrendamientos</flux:sidebar.item>
@@ -35,7 +35,8 @@
                     <flux:sidebar.item :href="route('classifications')"
                         :current="request()->routeIs('classifications')" wire:navigate>Clasificaciones
                     </flux:sidebar.item>
-                    <flux:sidebar.item href="#">Equipos</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('devices')" :current="request()->routeIs('devices*')"
+                        wire:navigate>Equipos</flux:sidebar.item>
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="cog-6-tooth" heading="Procesos" class="grid"

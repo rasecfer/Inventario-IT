@@ -8,7 +8,7 @@
                     <p class="mt-1 text-green-100"></p>
                 </div>
                 <div>
-                    <a href="/employees"
+                    <a href="/catalogs/employees"
                         class="flex transform cursor-pointer items-center gap-2 rounded-lg bg-slate-600 px-8 py-3 font-bold text-white hover:bg-slate-800 hover:shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">

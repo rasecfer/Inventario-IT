@@ -4,11 +4,11 @@
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-white">Empleados</h1>
+                    <h1 class="text-3xl font-bold text-white">Equipos</h1>
                     <p class="mt-1 text-green-100"></p>
                 </div>
                 <div>
-                    <a href="employees/create"
+                    <a href="/catalogs/devices/create"
                         class="flex transform cursor-pointer items-center gap-2 rounded-lg bg-slate-600 px-8 py-3 font-bold text-white hover:bg-slate-800 hover:shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -30,7 +30,8 @@
                 <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Buscar</label>
                 <div class="relative">
 
-                    <input type="text" wire:model.live.debounce.300ms="search" placeholder="Buscar empleados..."
+                    <input type="text" wire:model.live.debounce.300ms="search"
+                        placeholder="Buscar equipos por serie..."
                         class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-purple-500">
                     <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center pl-7">
                         <!-- SVG Icon -->
@@ -48,61 +49,29 @@
                 <thead
                     class="border-b border-gray-800 bg-gray-200 text-gray-600 dark:border-gray-200 dark:bg-neutral-700 dark:text-gray-300">
                     <tr>
-                        <th wire:click="sortField('id')"
-                            class="cursor-pointer px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
+                        <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
                             <div class="flex items-center gap-2">
                                 Id
-                                @if ($sortBy === 'id')
-                                    <svg class="{{ $sortDirection === 'asc' ? 'rotate-180' : '' }} h-4 w-4"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                @endif
                             </div>
                         </th>
-                        <th wire:click="sortField('last_name')"
-                            class="cursor-pointer px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
+                        <th class="x-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
                             <div class="flex items-center gap-2">
-                                Apellidos
-                                @if ($sortBy === 'last_name')
-                                    <svg class="{{ $sortDirection === 'asc' ? 'rotate-180' : '' }} h-4 w-4"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                @endif
-                            </div>
-                        </th>
-                        <th wire:click="sortField('first_name')"
-                            class="cursor-pointer px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
-                            <div class="flex items-center gap-2">
-                                Nombre(s)
-                                @if ($sortBy === 'first_name')
-                                    <svg class="{{ $sortDirection === 'asc' ? 'rotate-180' : '' }} h-4 w-4"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                @endif
+                                Marca
                             </div>
                         </th>
                         <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
                             <div class="flex items-center gap-2">
-                                Departamento
+                                Clasificación
                             </div>
                         </th>
-                        <th wire:click="sortField('payroll_number')"
-                            class="cursor-pointer px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
+                        <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
                             <div class="flex items-center gap-2">
-                                Num. Nómina
-                                @if ($sortBy === 'payroll_number')
-                                    <svg class="{{ $sortDirection === 'asc' ? 'rotate-180' : '' }} h-4 w-4"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                @endif
+                                Modelo
+                            </div>
+                        </th>
+                        <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
+                            <div class="flex items-center gap-2">
+                                Serie
                             </div>
                         </th>
                         </th>
@@ -118,48 +87,55 @@
                 </thead>
 
                 <tbody class="divide-y divide-gray-500 dark:divide-gray-400">
-                    @forelse($employees as $employee)
+                    @forelse($devices as $device)
                         <tr class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-600"
-                            wire:key="employee-{{ $employee->id }}">
+                            wire:key="device-{{ $device->id }}">
                             <td class="whitespace-nowrap px-6 py-4 text-right">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    {{ $employee->id }}
+                                    {{ $device->id }}
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap px-0 py-4 text-left">
+                                <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
+                                    {{ $device->device_model->brand->name }}
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-left">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    {{ $employee->last_name }}
+                                    {{ $device->device_model->classification->name }}
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-left">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    {{ $employee->first_name }}
+                                    {{ $device->device_model->description }}
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-left">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    {{ $employee->department->name }}
+                                    {{ $device->serial_number }}
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-left">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    {{ $employee->payroll_number }}
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap px-6 py-4 text-left">
-                                <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    @if ($employee->is_active)
-                                        <span
-                                            class="rounded-2xl border border-gray-600 bg-green-400 px-3 py-1 dark:border-gray-300 dark:bg-green-700"">Activo</span>
-                                    @else
-                                        <span
-                                            class="rounded-2xl border border-gray-600 bg-red-400 px-3 py-1 dark:border-gray-300 dark:bg-red-700"">Inactivo</span>
-                                    @endif
+                                    @switch($device->status)
+                                        @case(App\Enums\DeviceStatus::Available)
+                                            <span
+                                                class="rounded-2xl border border-gray-600 bg-green-400 px-3 py-1 dark:border-gray-300 dark:bg-green-700"">{{ $device->status->label() }}</span>
+                                        @break
 
+                                        @case(App\Enums\DeviceStatus::Assigned)
+                                            <span
+                                                class="rounded-2xl border border-gray-600 bg-orange-400 px-3 py-1 dark:border-gray-300 dark:bg-orange-700"">{{ $device->status->label() }}</span>
+                                        @break
+
+                                        @default
+                                            <span
+                                                class="rounded-2xl border border-gray-600 bg-red-400 px-3 py-1 dark:border-gray-300 dark:bg-red-700"">{{ $device->status->label() }}</span>
+                                    @endswitch
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-center">
-                                <a href="employees/{{ $employee->id }}/edit""
+                                <a href="devices/{{ $device->id }}/edit""
                                     class="cursor-pointer text-cyan-600 transition hover:text-cyan-700">
                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -168,32 +144,32 @@
                                 </a>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="px-6 py-12 text-center">
-                                <div class="flex flex-col items-center">
-                                    <svg class="mb-4 h-16 w-16 text-gray-300" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
-                                    </svg>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="px-6 py-12 text-center">
+                                    <div class="flex flex-col items-center">
+                                        <svg class="mb-4 h-16 w-16 text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                        </svg>
 
-                                    <h3 class="mb-2 text-lg font-medium text-gray-700 dark:text-gray-300">No se
-                                        encontraron registros
-                                    </h3>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        @if ($employees->hasPages())
-            <div class="border-t border-gray-200 px-6 py-4">
-                {{ $employees->links() }}
+                                        <h3 class="mb-2 text-lg font-medium text-gray-700 dark:text-gray-300">No se
+                                            encontraron registros
+                                        </h3>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
-        @endif
+            @if ($devices->hasPages())
+                <div class="border-t border-gray-200 px-6 py-4">
+                    {{ $devices->links() }}
+                </div>
+            @endif
+        </div>
     </div>
-</div>
-</div>
+    </div>
