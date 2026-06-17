@@ -3,6 +3,7 @@
 namespace App\Livewire\Catalog;
 
 use App\Models\Brand;
+use Flux\Flux;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
@@ -60,13 +61,23 @@ class BrandForm extends Component
             $brand = Brand::findOrFail($this->brand->id);
             $brand->name = $this->name;
             $brand->save();
-            session()->flash('message', 'Registro actualizado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro actualizado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         } else {
             $data = [
                 'name' => $this->name
             ];
             Brand::create($data);
-            session()->flash('message', 'Registro insertado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro creado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         }
         $this->isEditing = false;
 

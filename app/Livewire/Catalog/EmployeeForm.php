@@ -4,6 +4,7 @@ namespace App\Livewire\Catalog;
 
 use App\Models\Department;
 use App\Models\Employee;
+use Flux\Flux;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
@@ -100,10 +101,20 @@ class EmployeeForm extends Component
         if ($this->isEditing) {
             $employee = Employee::findOrFail($this->employee_id);
             $employee->update($data);
-            session()->flash('message', 'Empleado actualizado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro actualizado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         } else {
             Employee::create($data);
-            session()->flash('message', 'Empleado creado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro creado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         }
 
         return redirect()->route('employees');

@@ -3,6 +3,7 @@
 namespace App\Livewire\Catalog;
 
 use App\Models\Classification;
+use Flux\Flux;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
@@ -60,13 +61,23 @@ class ClassificationForm extends Component
             $classification = Classification::findOrFail($this->classification->id);
             $classification->name = $this->name;
             $classification->save();
-            session()->flash('message', 'Registro actualizado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro actualizado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         } else {
             $data = [
                 'name' => $this->name
             ];
             Classification::create($data);
-            session()->flash('message', 'Registro insertado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro creado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         }
         $this->isEditing = false;
 

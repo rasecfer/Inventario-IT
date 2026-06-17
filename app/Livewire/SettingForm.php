@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Setting;
+use Flux\Flux;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -59,14 +60,24 @@ class SettingForm extends Component
             $setting->logo_path = $this->logo_path;
             $setting->disclaimer = $this->disclaimer;
             $setting->save();
-            session()->flash('message', 'Registro actualizado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro actualizado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         } else {
             $data = [
                 'logo_path' => $this->logo_path,
                 'disclaimer' => $this->disclaimer
             ];
             $setting = Setting::create($data);
-            session()->flash('message', 'Registro insertado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro creado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         }
     }
 

@@ -29,7 +29,8 @@
                     <flux:sidebar.item href="#">Arrendamientos</flux:sidebar.item>
                     <flux:sidebar.item :href="route('brands')" :current="request()->routeIs('brands')" wire:navigate>
                         Marcas</flux:sidebar.item>
-                    <flux:sidebar.item href="#">Modelos</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('models')" :current="request()->routeIs('models')" wire:navigate>
+                        Modelos</flux:sidebar.item>
                     <flux:sidebar.item :href="route('classifications')"
                         :current="request()->routeIs('classifications')" wire:navigate>Clasificaciones
                     </flux:sidebar.item>
@@ -131,7 +132,7 @@
         {{ $slot }}
 
         @persist('toast')
-            <flux:toast.group>
+            <flux:toast.group position="top end">
                 <flux:toast />
             </flux:toast.group>
         @endpersist

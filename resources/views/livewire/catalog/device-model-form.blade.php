@@ -3,11 +3,11 @@
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-white">Marcas</h1>
+                    <h1 class="text-3xl font-bold text-white">Modelos</h1>
                     <p class="mt-1 text-green-100"></p>
                 </div>
                 <div>
-                    <button wire:click="newBrand"
+                    <button wire:click="newDeviceModel"
                         class="flex transform cursor-pointer items-center gap-2 rounded-lg bg-slate-600 px-8 py-3 font-bold text-white hover:bg-slate-800 hover:shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -33,9 +33,13 @@
                             Id
                         </th>
                         <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
-                            <div class="flex items-center gap-2">
-                                Marca
-                            </div>
+                            Marca
+                        </th>
+                        <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
+                            Clasificación
+                        </th>
+                        <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">
+                            Modelo
                         </th>
                         <th class="px-6 py-4 text-center text-xs font-bold uppercase tracking-wider">
                             Acciones
@@ -44,21 +48,31 @@
                 </thead>
 
                 <tbody class="divide-y divide-gray-500 dark:divide-gray-400">
-                    @forelse($brands as $brand)
+                    @forelse($deviceModels as $deviceModel)
                         <tr class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-600"
-                            wire:key="brand-{{ $brand->id }}">
+                            wire:key="deviceModel-{{ $deviceModel->id }}">
                             <td class="whitespace-nowrap px-6 py-4 text-right">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    {{ $brand->id }}
+                                    {{ $deviceModel->id }}
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-left">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
-                                    {{ $brand->name }}
+                                    {{ $deviceModel->brand->name }}
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-left">
+                                <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
+                                    {{ $deviceModel->classification->name }}
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-left">
+                                <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
+                                    {{ $deviceModel->description }}
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-center">
-                                <button type="button" wire:click="editBrand({{ $brand }})"
+                                <button type="button" wire:click="editDeviceModel({{ $deviceModel }})"
                                     class="cursor-pointer text-cyan-600 transition hover:text-cyan-700">
                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -111,7 +125,7 @@
                 <!-- Header -->
                 <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        {{ $isEditing ? 'Editar Marca' : 'Crear Marca' }}</h3>
+                        {{ $isEditing ? 'Editar Modelo' : 'Crear Modelo' }}</h3>
                     <button wire:click="close"
                         class="cursor-pointer text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-200">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,14 +138,47 @@
 
                     <!-- Body -->
                     <div class="px-6 py-6">
-                        <div>
-                            <label for="name"
+                        <div class="mb-6">
+                            <label for="brand_id"
                                 class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Nombre <span class="text-red-500">*</span>
+                                Marca <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" id="name" wire:model="name" placeholder="Ej. Microsoft"
-                                class="@error('name') border-red-500 @enderror w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-purple-500">
-                            @error('name')
+                            <select wire:model="brand_id" id="brand_id"
+                                class="@error('brand_id') border-red-500 @enderror w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-purple-500">
+                                <option value="">Seleccione Marca</option>
+                                @foreach ($brands as $brand)
+                                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand_id')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="classification_id"
+                                class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Clasificación <span class="text-red-500">*</span>
+                            </label>
+                            <select wire:model="classification_id" id="classification_id"
+                                class="@error('classification_id') border-red-500 @enderror w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-purple-500">
+                                <option value="">Seleccione Clasificación</option>
+                                @foreach ($classifications as $classification)
+                                    <option value="{{ $classification->id }}">{{ $classification->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('classification_id')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="description"
+                                class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Descripción <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="description" wire:model="description"
+                                placeholder="Ej. Inspiron 3490"
+                                class="@error('description') border-red-500 @enderror w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-purple-500">
+                            @error('description')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>

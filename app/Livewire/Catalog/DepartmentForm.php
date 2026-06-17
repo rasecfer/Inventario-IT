@@ -3,6 +3,7 @@
 namespace App\Livewire\Catalog;
 
 use App\Models\Department;
+use Flux\Flux;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
@@ -61,13 +62,23 @@ class DepartmentForm extends Component
             $department = Department::findOrFail($this->department->id);
             $department->name = $this->name;
             $department->save();
-            session()->flash('message', 'Registro actualizado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro actualizado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         } else {
             $data = [
                 'name' => $this->name
             ];
             Department::create($data);
-            session()->flash('message', 'Registro insertado correctamente.');
+            Flux::toast(
+                heading: 'Mensaje',
+                text: 'Registro creado correctamente.',
+                duration: 2000,
+                variant: 'success',
+            );
         }
         $this->isEditing = false;
 
