@@ -6,6 +6,7 @@ use App\Livewire\Catalog\DepartmentForm;
 use App\Livewire\Catalog\DeviceModelForm;
 use App\Livewire\Catalog\EmployeeForm;
 use App\Livewire\Catalog\EmployeeList;
+use App\Livewire\Catalog\LeaseForm;
 use App\Livewire\SettingForm;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('brands', BrandForm::class)->name('brands');
     Route::get('classifications', ClassificationForm::class)->name('classifications');
     Route::get('models', DeviceModelForm::class)->name('models');
+    Route::get('leases', LeaseForm::class)->name('leases');
 });
 
 // require __DIR__.'/settings.php';
