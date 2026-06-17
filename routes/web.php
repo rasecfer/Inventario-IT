@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Catalog\BrandForm;
 use App\Livewire\Catalog\DepartmentForm;
 use App\Livewire\Catalog\EmployeeForm;
 use App\Livewire\Catalog\EmployeeList;
@@ -17,6 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('employees', EmployeeList::class)->name('employees');
     Route::get('employees/create', EmployeeForm::class)->name('employees.create');
     Route::get('employees/{employee_id}/edit', EmployeeForm::class)->name('employees.edit');
+    Route::get('brands', BrandForm::class)->name('brands');
 });
 
 // require __DIR__.'/settings.php';

@@ -27,7 +27,8 @@
                     <flux:sidebar.item :href="route('employees')" :current="request()->routeIs('employees')"
                         wire:navigate>Empleados</flux:sidebar.item>
                     <flux:sidebar.item href="#">Arrendamientos</flux:sidebar.item>
-                    <flux:sidebar.item href="#">Marca</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('brands')" :current="request()->routeIs('brands')" wire:navigate>
+                        Marca</flux:sidebar.item>
                     <flux:sidebar.item href="#">Modelo</flux:sidebar.item>
                     <flux:sidebar.item href="#">Tipo</flux:sidebar.item>
                     <flux:sidebar.item href="#">Equipos</flux:sidebar.item>

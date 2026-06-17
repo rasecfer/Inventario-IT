@@ -2,28 +2,27 @@
 
 namespace App\Livewire\Catalog;
 
-use App\Models\Department;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Departamentos')]
-class DepartmentForm extends Component
+#[Title('Marcas')]
+class BrandForm extends Component
 {
-
     public bool $isOpen = false;
     public bool $isEditing = false;
     public $name = '';
-    public $department;
+    public $brand;
 
     #[Computed]
-    public function departments(): Collection
+    public function brands(): Collection
     {
-        return Department::all();
+        return Brand::all();
     }
 
-    public function newDepartment(): void
+    public function newBrand(): void
     {
         $this->resetValidation();
         $this->name = '';
@@ -45,10 +44,10 @@ class DepartmentForm extends Component
         return $rules;
     }
 
-    public function editDepartment(Department $department): void
+    public function editBrand(Brand $brand): void
     {
-        $this->department = $department;
-        $this->name = $department->name;
+        $this->brand = $brand;
+        $this->name = $brand->name;
         $this->isEditing = true;
         $this->isOpen = true;
     }
@@ -58,15 +57,15 @@ class DepartmentForm extends Component
         $this->validate();
 
         if ($this->isEditing) {
-            $department = Department::findOrFail($this->department->id);
-            $department->name = $this->name;
-            $department->save();
+            $brand = Brand::findOrFail($this->brand->id);
+            $brand->name = $this->name;
+            $brand->save();
             session()->flash('message', 'Registro actualizado correctamente.');
         } else {
             $data = [
                 'name' => $this->name
             ];
-            Department::create($data);
+            Brand::create($data);
             session()->flash('message', 'Registro insertado correctamente.');
         }
         $this->isEditing = false;
@@ -74,15 +73,10 @@ class DepartmentForm extends Component
         $this->isOpen = false;
     }
 
-    public function mount(): void
-    {
-        //$this->departments = Department::all();
-    }
-
     public function render()
     {
-        return view('livewire.catalog.department-form', [
-            'departments' => $this->departments
+        return view('livewire.catalog.brand-form', [
+            'brands' => $this->brands
         ]);
     }
 }
