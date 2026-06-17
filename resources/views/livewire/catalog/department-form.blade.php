@@ -59,7 +59,8 @@
 
                 <tbody class="divide-y divide-gray-500 dark:divide-gray-400">
                     @forelse($departments as $department)
-                        <tr class="bg-slate-200 dark:bg-slate-700" wire:key="department-{{ $department->id }}">
+                        <tr class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-600"
+                            wire:key="department-{{ $department->id }}">
                             <td class="whitespace-nowrap px-6 py-4 text-right">
                                 <div class="text-sm font-bold text-gray-600 dark:text-gray-300">
                                     {{ $department->id }}
