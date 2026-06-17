@@ -137,21 +137,23 @@
         @fluxScripts
 
         <script>
-            // Dark mode toggle
-            const themeToggle = document.getElementById('themeToggle');
-            const html = document.documentElement;
+            (function() {
+                // Dark mode toggle
+                const themeToggle = document.getElementById('themeToggle');
+                const html = document.documentElement;
 
-            // Check for saved theme preference or default to dark
-            if (localStorage.getItem('theme') === 'light') {
-                html.classList.remove('dark');
-            } else {
-                html.classList.add('dark');
-            }
+                // Check for saved theme preference or default to dark
+                if (localStorage.getItem('theme') === 'light') {
+                    html.classList.remove('dark');
+                } else {
+                    html.classList.add('dark');
+                }
 
-            themeToggle.addEventListener('click', () => {
-                html.classList.toggle('dark');
-                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-            });
+                themeToggle.addEventListener('click', () => {
+                    html.classList.toggle('dark');
+                    localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+                });
+            })();
         </script>
     </body>
 
