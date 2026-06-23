@@ -7,7 +7,7 @@
                     <p class="mt-1 text-green-100"></p>
                 </div>
                 <div>
-                    <button wire:click="newClassification"
+                    <button type="button" wire:click="newClassification"
                         class="flex transform cursor-pointer items-center gap-2 rounded-lg bg-slate-600 px-8 py-3 font-bold text-white hover:bg-slate-800 hover:shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -112,7 +112,7 @@
                 <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                         {{ $isEditing ? 'Editar Clasificación' : 'Crear Clasificación' }}</h3>
-                    <button wire:click="close"
+                    <button type="button" wire:click="close"
                         class="cursor-pointer text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-200">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

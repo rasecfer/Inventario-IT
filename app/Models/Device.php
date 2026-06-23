@@ -6,6 +6,7 @@ use App\Enums\DeviceStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['device_model_id', 'lease_id', 'serial_number', 'user_id', 'status', 'comments'])]
 class Device extends Model
@@ -23,4 +24,10 @@ class Device extends Model
     {
         return $this->belongsTo(Lease::class);
     }
+
+    public function assignment_details(): HasMany
+    {
+        return $this->hasMany(AssignmentDetail::class);
+    }
+
 }

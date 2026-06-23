@@ -196,4 +196,3 @@
         @endif
     </div>
 </div>
-</div>

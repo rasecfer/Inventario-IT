@@ -40,8 +40,9 @@
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="cog-6-tooth" heading="Procesos" class="grid"
-                    :expanded="false">
-                    <flux:sidebar.item href="#">Asignación</flux:sidebar.item>
+                    :expanded="request()->is('processes/*')">
+                    <flux:sidebar.item :href="route('assignments')" :current="request()->routeIs('assignments*')"
+                        wire:navigate>Asignación</flux:sidebar.item>
                     <flux:sidebar.item href="#">Liberación</flux:sidebar.item>
                     <flux:sidebar.item href="#">Baja de Equipo</flux:sidebar.item>
                 </flux:sidebar.group>
