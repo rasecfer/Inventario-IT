@@ -45,6 +45,15 @@ class ClassificationForm extends Component
         return $rules;
     }
 
+    protected function messages(): array
+    {
+        return [
+            'name.required' => 'El campo Nombre es requerido!',
+            'name.string' => 'El campo Nombre debe ser tipo caracter',
+            'name.max' => 'La longitud máxima es de 100 caracteres'
+        ];
+    }
+
     public function editClassification(Classification $classification): void
     {
         $this->classification = $classification;

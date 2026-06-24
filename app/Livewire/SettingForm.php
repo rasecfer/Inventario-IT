@@ -36,6 +36,16 @@ class SettingForm extends Component
         return $rules;
     }
 
+    protected function messages(): array
+    {
+        return [
+            'image.required' => 'El campo Logo es requerido!',
+            'image.image' => 'El campo Logo debe ser de tipo Imagen!',
+            'image.max' => 'El tamaño máximo debe ser 2048Kb!',
+            'disclaimer.required' => 'El campo Texto/Cláusula es requerido!!'
+        ];
+    }
+
     public function mount()
     {
 

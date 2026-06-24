@@ -58,7 +58,7 @@ class DisposalCreate extends Component
     protected function messages(): array
     {
         return [
-            'status.required' => 'El estado es obligatorio',
+            'status.required' => 'El campo Estado es requerido!',
             'devicesCol.required' => 'Debe agregar al menos un Equipo!'
         ];
     }

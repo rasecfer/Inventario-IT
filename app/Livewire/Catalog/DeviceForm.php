@@ -42,6 +42,18 @@ class DeviceForm extends Component
         return $rules;
     }
 
+    protected function messages(): array
+    {
+        return [
+            'device_model_id.required' => 'El campo Modelo es requerido!',
+            'lease_id.required' => 'El campo Arrendamiento es requerido!',
+            'status.required' => 'El campo Estado es requerido!',
+            'comments.max' => 'La longitud máxima debe ser 1000 caracteres!',
+            'serial_number.required' => 'El campo Núm. Serie es requerido!',
+            'serial_number.unique' => 'Ya existe un Equipo con el mismo número de serie!'
+        ];
+    }
+
     #[Computed]
     public function deviceModels(): Collection
     {

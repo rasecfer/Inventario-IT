@@ -68,7 +68,7 @@ class AssignmentCreate extends Component
     protected function messages(): array
     {
         return [
-            'employee_name.required' => 'Debe seleccionar un empleado!',
+            'employee_name.required' => 'Debe seleccionar un Empleado!',
             'devicesCol.required' => 'Debe agregar al menos un Equipo!'
         ];
     }

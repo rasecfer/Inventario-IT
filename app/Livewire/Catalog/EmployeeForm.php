@@ -60,6 +60,20 @@ class EmployeeForm extends Component
         return $rules;
     }
 
+    protected function messages(): array
+    {
+        return [
+            'first_name.required' => 'El campo Nombre es requerido!',
+            'last_name.required' => 'El campo Apellidos es requerido!',
+            'department_id.required' => 'El campo Departamento es requerido!',
+            'username.requried' => 'El campo Usuario es requerido!',
+            'username.unique' => 'Ya existe un empleado con ese Usuario!',
+            'email.required' => 'El campo Correo-e es requerido!',
+            'email.email' => 'El campo Correo-e debe tener formato válido de correo electrónico!',
+            'email.unique' => 'Ya existe un empleado con ese Correo-e!'
+        ];
+    }
+
     #[Computed]
     public function departments(): Collection
     {

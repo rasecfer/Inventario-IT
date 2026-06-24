@@ -47,6 +47,15 @@ class ReleaseCreate extends Component
         return $rules;
     }
 
+    protected function messages(): array
+    {
+        return [
+            'assignment_id.required' => 'Debe seleccionar una Asignación!',
+            'detailsCol.required' => 'Debe seleccionar al menos un Equipo para Liberar!',
+            'end_date.required' => 'El campo Fecha Final es requerido!',
+        ];
+    }
+
     public function save()
     {
         $this->validate();

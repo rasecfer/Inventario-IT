@@ -65,6 +65,16 @@ class DeviceModelForm extends Component
         return $rules;
     }
 
+    protected function messages(): array
+    {
+        return [
+            'brand_id.required' => 'El campo Marca es requerido!',
+            'classification_id.required' => 'El campo Clasificación es requerido!',
+            'description.required' => 'El campo Descripción es requerido!',
+            'description.max' => 'La longitud máxima es de 255 caracteres'
+        ];
+    }
+
     public function editDeviceModel(DeviceModel $deviceModel): void
     {
         $this->deviceModel = $deviceModel;

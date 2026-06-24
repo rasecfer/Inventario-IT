@@ -54,6 +54,17 @@ class LeaseForm extends Component
         return $rules;
     }
 
+    protected function messages(): array
+    {
+        return [
+            'description.required' => 'El campo Descripción es requerido!',
+            'start_date.required' => 'El campo Fecha Inicial es requerido!',
+            'end_date.required' => 'El campo Fecha Final es requerido!',
+            'end_date.after' => 'El campo Fecha Final debe ser posterior a Fecha Inicial!',
+            'username.unique' => 'Ya existe un empleado con ese Usuario!',
+        ];
+    }
+
     public function editLease(Lease $lease): void
     {
         $this->lease = $lease;
