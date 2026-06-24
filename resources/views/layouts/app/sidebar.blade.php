@@ -45,7 +45,8 @@
                         wire:navigate>Asignación</flux:sidebar.item>
                     <flux:sidebar.item :href="route('releases')" :current="request()->routeIs('releases*')"
                         wire:navigate>Liberación</flux:sidebar.item>
-                    <flux:sidebar.item href="#">Baja de Equipo</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('disposals')" :current="request()->routeIs('disposals*')"
+                        wire:navigate>Baja de Equipo</flux:sidebar.item>
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="document-chart-bar" heading="Reportes" class="grid"

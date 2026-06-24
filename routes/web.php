@@ -11,6 +11,7 @@ use App\Livewire\Catalog\EmployeeList;
 use App\Livewire\Catalog\LeaseForm;
 use App\Livewire\Process\AssignmentCreate;
 use App\Livewire\Process\AssignmentList;
+use App\Livewire\Process\DisposalCreate;
 use App\Livewire\Process\ReleaseCreate;
 use App\Livewire\Process\ReleaseList;
 use App\Livewire\SettingForm;
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('processes/assignments/create', AssignmentCreate::class)->name('assignments.create');
     Route::get('processes/releases', ReleaseList::class)->name('releases');
     Route::get('processes/releases/create', ReleaseCreate::class)->name('releases.create');
+    Route::get('processes/disposals', DisposalCreate::class)->name('disposals');
 });
 
 // require __DIR__.'/settings.php';
