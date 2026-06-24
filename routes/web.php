@@ -11,6 +11,8 @@ use App\Livewire\Catalog\EmployeeList;
 use App\Livewire\Catalog\LeaseForm;
 use App\Livewire\Process\AssignmentCreate;
 use App\Livewire\Process\AssignmentList;
+use App\Livewire\Process\ReleaseCreate;
+use App\Livewire\Process\ReleaseList;
 use App\Livewire\SettingForm;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +36,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('catalogs/devices/{device_id}/edit', DeviceForm::class)->name('devices.edit');
 
     Route::get('processes/assignments', AssignmentList::class)->name('assignments');
-    Route::get('processes/assignments/create', AssignmentCreate::class)->name('assignment.create');
+    Route::get('processes/assignments/create', AssignmentCreate::class)->name('assignments.create');
+    Route::get('processes/releases', ReleaseList::class)->name('releases');
+    Route::get('processes/releases/create', ReleaseCreate::class)->name('releases.create');
 });
 
 // require __DIR__.'/settings.php';

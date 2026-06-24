@@ -95,7 +95,7 @@
                                     wire:key="device-{{ $device->id }}">
                                     <td class="whitespace-nowrap px-6 py-4 text-center">
                                         <button type="button" wire:click="deviceSelected({{ $device }})"
-                                            class="cursor-pointer text-green-600 transition hover:text-green-700">
+                                            class="cursor-pointer rounded-full bg-green-600 p-1 text-gray-200 transition hover:bg-green-800">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"

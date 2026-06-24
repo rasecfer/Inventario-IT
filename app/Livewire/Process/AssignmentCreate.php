@@ -8,7 +8,6 @@ use App\Models\AssignmentDetail;
 use App\Models\Device;
 use App\Models\Employee;
 use Flux\Flux;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;

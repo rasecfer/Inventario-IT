@@ -6,7 +6,7 @@
         <meta name="viewport"
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Asignación_{{ $assignment->id }}</title>
+        <title>Liberación{{ $release->id }}</title>
 
         <style>
             @page {
@@ -26,11 +26,11 @@
                 <td style="width: 65%" align="right">
                     <div style="text-align: left;">
                         <h2 style="font-weight: bold; font-size: 28px; color: #0d47a1;">
-                            Carta de Asignación de Equipo
+                            Carta de Liberación de Equipo
                         </h2>
                     </div>
                     <div style="text-align: right;">
-                        <h2 style="color: #0d47a1">Folio: {{ $assignment->id }}</h2>
+                        <h2 style="color: #0d47a1">Folio: {{ $release->id }}</h2>
                     </div>
                 </td>
             </tr>
@@ -40,10 +40,10 @@
 
         <div style="text-align: right">
             <p>
-                Departamento: {{ $assignment->department_name }}
+                Departamento: {{ $release->department_name }}
             </p>
             <p>
-                Fecha: {{ \Carbon\Carbon::parse($assignment->date)->format('d/m/Y') }}
+                Fecha: {{ \Carbon\Carbon::parse($release->date)->format('d/m/Y') }}
             </p>
         </div>
 
@@ -60,7 +60,7 @@
                 $lines = 0;
             @endphp
             <tbody>
-                @foreach ($assignment->assignment_details as $item)
+                @foreach ($release->release_details as $item)
                     <tr>
                         <td>{{ $item->device->device_model->brand->name }}</td>
                         <td>{{ $item->device->device_model->classification->name }}</td>
@@ -86,13 +86,16 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $assignment->comments }}</td>
+                    <td>{{ $release->comments }}</td>
                 </tr>
             </tbody>
         </table>
 
         <p>
-            {{ $settings->disclaimer }}
+            Con esta Carta de Liberación el Departamento de IT y el usuario están de acuerdo con la entrega del equipo y
+            las condiciones en que se entrega. Servirá al usuario como comprobante de no adeudo de equipo, con las
+            excepciones descritas en los "comentarios" de la misma, mismos que deberán aclararse con el departamento de
+            Recursos Humanos.
         </p>
 
         <div>&nbsp;</div>
@@ -113,11 +116,11 @@
             </tr>
             <tr>
                 <td width="45%" align="center">
-                    Entrega Departamento de TI
+                    {{ $release->last_name }}, {{ $release->first_name }}
                 </td>
                 <td width="10%"></td>
                 <td width="45%" align="center">
-                    {{ $assignment->last_name }}, {{ $assignment->first_name }}
+                    Recibe Departamento de TI
                 </td>
             </tr>
         </table>

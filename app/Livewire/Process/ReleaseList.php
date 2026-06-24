@@ -2,24 +2,22 @@
 
 namespace App\Livewire\Process;
 
-use App\Models\Assignment;
+use App\Models\Release;
 use App\Models\Setting;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-
-#[Title('Asignaciones')]
-class AssignmentList extends Component
+#[Title('Liberaciones')]
+class ReleaseList extends Component
 {
-
     public $search = '';
 
     #[Computed]
-    public function assignments()
+    public function releases()
     {
-        $query = Assignment::with('assignment_details');
+        $query = Release::with('release_details');
 
         if ($this->search) {
             $query->where('first_name', 'like', '%'.$this->search.'%')
@@ -32,23 +30,22 @@ class AssignmentList extends Component
 
     public function printPdf($id = null)
     {
-        $assignment = Assignment::findOrFail($id);
+        $release = Release::findOrFail($id);
         $settings = Setting::firstOrFail();
 
-        $pdf = Pdf::loadView('reports.assignment', [
-            'assignment' => $assignment,
+        $pdf = Pdf::loadView('reports.release', [
+            'release' => $release,
             'settings' => $settings
         ]);
 
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();
-        }, 'Asignacion_'.$id.'.pdf');
+        }, 'Liberación'.$id.'.pdf');
     }
-
     public function render()
     {
-        return view('livewire.process.assignment-list', [
-            'assignments' => $this->assignments
+        return view('livewire.process.release-list', [
+            'releases' => $this->releases
         ]);
     }
 }

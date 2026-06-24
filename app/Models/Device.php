@@ -30,4 +30,9 @@ class Device extends Model
         return $this->hasMany(AssignmentDetail::class);
     }
 
+    public function release_details(): HasMany
+    {
+        return $this->hasMany(ReleaseDetail::class);
+    }
+
 }

@@ -19,4 +19,9 @@ class Employee extends Model
     {
         return $this->hasMany(Assignment::class);
     }
+
+    public function release(): HasMany
+    {
+        return $this->hasMany(Release::class);
+    }
 }

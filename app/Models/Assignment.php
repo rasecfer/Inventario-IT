@@ -19,4 +19,9 @@ class Assignment extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function releases(): HasMany
+    {
+        return $this->hasMany(Release::class);
+    }
 }

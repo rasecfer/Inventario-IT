@@ -43,7 +43,8 @@
                     :expanded="request()->is('processes/*')">
                     <flux:sidebar.item :href="route('assignments')" :current="request()->routeIs('assignments*')"
                         wire:navigate>Asignación</flux:sidebar.item>
-                    <flux:sidebar.item href="#">Liberación</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('releases')" :current="request()->routeIs('releases*')"
+                        wire:navigate>Liberación</flux:sidebar.item>
                     <flux:sidebar.item href="#">Baja de Equipo</flux:sidebar.item>
                 </flux:sidebar.group>
 
