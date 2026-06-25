@@ -9,6 +9,7 @@ use App\Livewire\Catalog\DeviceModelForm;
 use App\Livewire\Catalog\EmployeeForm;
 use App\Livewire\Catalog\EmployeeList;
 use App\Livewire\Catalog\LeaseForm;
+use App\Livewire\Dashboard;
 use App\Livewire\Process\AssignmentCreate;
 use App\Livewire\Process\AssignmentList;
 use App\Livewire\Process\DisposalCreate;
@@ -22,7 +23,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    // Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::get('dashboard', Dashboard::class)->name('dashboard');
+
     Route::get('settings', SettingForm::class)->name('settings');
     Route::get('catalogs/departments', DepartmentForm::class)->name('departments');
     Route::get('catalogs/employees', EmployeeList::class)->name('employees');
