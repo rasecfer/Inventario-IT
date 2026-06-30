@@ -50,8 +50,9 @@
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="document-chart-bar" heading="Reportes" class="grid"
-                    :expanded="false">
-                    <flux:sidebar.item href="#">Listado de Equipos</flux:sidebar.item>
+                    :expanded="request()->is('reports/*')">
+                    <flux:sidebar.item :href="route('listing')" :current="request()->routeIs('listing')"
+                        wire:navigate>Listado de Equipos</flux:sidebar.item>
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="lock-closed" heading="Seguridad" class="grid"

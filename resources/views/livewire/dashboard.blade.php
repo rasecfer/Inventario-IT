@@ -1,6 +1,67 @@
-<div>
+<div x-data="{ devicesPerClassification: null, categoriesChart: null }" x-init="devicesPerClassification = new Chart(document.getElementById('devicesPerClassification').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: {{ Js::from($classifications->pluck('name')) }},
+        datasets: [{
+            label: 'Equipos',
+            data: {{ Js::from($classifications->pluck('devices_count')) }},
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            pointBackgroundColor: 'rgb(147, 51, 234)',
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true
+            },
+            colors: {
+                forceOverride: true
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return value.toFixed(0);
+                    }
+                },
+            }
+        }
+    }
+});
+
+devicesPerLease = new Chart(document.getElementById('devicesPerLease').getContext('2d'), {
+    type: 'pie',
+    data: {
+        labels: {{ Js::from($lease_devices->pluck('description')) }},
+        datasets: [{
+            label: 'Equipos',
+            data: {{ Js::from($lease_devices->pluck('devices_count')) }},
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'right',
+            },
+            colors: {
+                forceOverride: true
+            }
+        }
+    }
+});">
+
     {{-- Header --}}
-    <div class="bg-linear-to-r rounded-xl from-gray-600 to-blue-400 shadow-lg">
+    <div class ="bg-linear-to-r rounded-xl from-gray-600 to-blue-400 shadow-lg">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <div>
@@ -49,10 +110,12 @@
                 <div class="mb-2 flex items-center justify-between">
                     <h3 class="text-md font-bold text-gray-600">Top 3 Clasificaciones</h3>
                     <div class="rounded-lg bg-green-100 p-2">
-                        <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6 text-green-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                         </svg>
+
                     </div>
                 </div>
                 <div class="mt-6 text-sm text-gray-600">
@@ -120,78 +183,4 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script>
-        let devicesPerClassification;
-        let categoriesChart;
-        document.addEventListener('livewire:navigated', function() {
-            // monthly Trend chart
-            const trendCtx = document.getElementById('devicesPerClassification').getContext('2d');
-
-            if (@json($classifications)) {
-
-                devicesPerClassification = new Chart(trendCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: @json($classifications->pluck('name')),
-                        datasets: [{
-                            label: 'Equipos',
-                            data: @json($classifications->pluck('devices_count')),
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 4,
-                            pointHoverRadius: 6,
-                            pointBackgroundColor: 'rgb(147, 51, 234)',
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: true
-                            },
-                            colors: {
-                                forceOverride: true
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return value.toFixed(0);
-                                    }
-                                },
-                            }
-                        }
-                    }
-                });
-                // category Pie chart
-                const categoryCtx = document.getElementById('devicesPerLease').getContext('2d');
-                devicesPerLease = new Chart(categoryCtx, {
-                    type: 'pie',
-                    data: {
-                        labels: @json($lease_devices->pluck('description')),
-                        datasets: [{
-                            label: 'Equipos',
-                            data: @json($lease_devices->pluck('devices_count')),
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'right',
-                            },
-                            colors: {
-                                forceOverride: true
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    </script>
 </div>

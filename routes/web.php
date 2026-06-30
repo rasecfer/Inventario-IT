@@ -15,6 +15,7 @@ use App\Livewire\Process\AssignmentList;
 use App\Livewire\Process\DisposalCreate;
 use App\Livewire\Process\ReleaseCreate;
 use App\Livewire\Process\ReleaseList;
+use App\Livewire\Reports\DeviceListing;
 use App\Livewire\SettingForm;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('processes/releases', ReleaseList::class)->name('releases');
     Route::get('processes/releases/create', ReleaseCreate::class)->name('releases.create');
     Route::get('processes/disposals', DisposalCreate::class)->name('disposals');
+
+    Route::get('reports/listing', DeviceListing::class)->name('listing');
 });
 
 // require __DIR__.'/settings.php';
