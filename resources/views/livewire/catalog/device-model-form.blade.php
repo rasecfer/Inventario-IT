@@ -7,14 +7,16 @@
                     <p class="mt-1 text-green-100"></p>
                 </div>
                 <div>
-                    <button type="button" wire:click="newDeviceModel"
-                        class="flex transform cursor-pointer items-center gap-2 rounded-lg bg-slate-600 px-8 py-3 font-bold text-white hover:bg-slate-800 hover:shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                        Nuevo
-                    </button>
+                    @can('create_model')
+                        <button type="button" wire:click="newDeviceModel"
+                            class="flex transform cursor-pointer items-center gap-2 rounded-lg bg-slate-600 px-8 py-3 font-bold text-white hover:bg-slate-800 hover:shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                            Nuevo
+                        </button>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -72,13 +74,15 @@
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-center">
-                                <button type="button" wire:click="editDeviceModel({{ $deviceModel }})"
-                                    class="cursor-pointer rounded-full bg-cyan-600 p-1 text-gray-200 transition hover:bg-cyan-700">
-                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
-                                </button>
+                                @can('edit_model')
+                                    <button type="button" wire:click="editDeviceModel({{ $deviceModel }})"
+                                        class="cursor-pointer rounded-full bg-cyan-600 p-1 text-gray-200 transition hover:bg-cyan-700">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </button>
+                                @endcan
                             </td>
                         </tr>
                     @empty

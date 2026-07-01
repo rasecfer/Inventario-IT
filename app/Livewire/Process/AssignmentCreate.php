@@ -135,6 +135,9 @@ class AssignmentCreate extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('create_assignment')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.process.assignment-create', [
             'devices' => $this->devices
         ]);

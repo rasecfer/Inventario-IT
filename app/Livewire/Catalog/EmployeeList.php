@@ -41,6 +41,9 @@ class EmployeeList extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('view_employee')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.employee-list', [
             'employees' => $this->employees
         ]);

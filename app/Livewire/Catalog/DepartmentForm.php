@@ -101,6 +101,9 @@ class DepartmentForm extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('view_department')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.department-form', [
             'departments' => $this->departments
         ]);

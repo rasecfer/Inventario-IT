@@ -115,6 +115,9 @@ class LeaseForm extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('view_lease')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.lease-form', [
             'leases' => $this->leases
         ]);

@@ -22,31 +22,51 @@
                 </flux:sidebar.item>
                 <flux:sidebar.group expandable icon="inbox-stack" heading="Catálogos" class="grid"
                     :expanded="request()->is('catalogs/*')">
-                    <flux:sidebar.item :href="route('departments')" :current="request()->routeIs('departments')"
-                        wire:navigate>Departamentos</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('employees')" :current="request()->routeIs('employees*')"
-                        wire:navigate>Empleados</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('leases')" :current="request()->routeIs('leases')" wire:navigate>
-                        Arrendamientos</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('brands')" :current="request()->routeIs('brands')" wire:navigate>
-                        Marcas</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('models')" :current="request()->routeIs('models')" wire:navigate>
-                        Modelos</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('classifications')"
-                        :current="request()->routeIs('classifications')" wire:navigate>Clasificaciones
-                    </flux:sidebar.item>
-                    <flux:sidebar.item :href="route('devices')" :current="request()->routeIs('devices*')"
-                        wire:navigate>Equipos</flux:sidebar.item>
+                    @can('view_department')
+                        <flux:sidebar.item :href="route('departments')" :current="request()->routeIs('departments')"
+                            wire:navigate>Departamentos</flux:sidebar.item>
+                    @endcan
+                    @can('view_employee')
+                        <flux:sidebar.item :href="route('employees')" :current="request()->routeIs('employees*')"
+                            wire:navigate>Empleados</flux:sidebar.item>
+                    @endcan
+                    @can('view_lease')
+                        <flux:sidebar.item :href="route('leases')" :current="request()->routeIs('leases')" wire:navigate>
+                            Arrendamientos</flux:sidebar.item>
+                    @endcan
+                    @can('view_brand')
+                        <flux:sidebar.item :href="route('brands')" :current="request()->routeIs('brands')" wire:navigate>
+                            Marcas</flux:sidebar.item>
+                    @endcan
+                    @can('view_model')
+                        <flux:sidebar.item :href="route('models')" :current="request()->routeIs('models')" wire:navigate>
+                            Modelos</flux:sidebar.item>
+                    @endcan
+                    @can('view_classification')
+                        <flux:sidebar.item :href="route('classifications')"
+                            :current="request()->routeIs('classifications')" wire:navigate>Clasificaciones
+                        </flux:sidebar.item>
+                    @endcan
+                    @can('view_device')
+                        <flux:sidebar.item :href="route('devices')" :current="request()->routeIs('devices*')"
+                            wire:navigate>Equipos</flux:sidebar.item>
+                    @endcan
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="cog-6-tooth" heading="Procesos" class="grid"
                     :expanded="request()->is('processes/*')">
-                    <flux:sidebar.item :href="route('assignments')" :current="request()->routeIs('assignments*')"
-                        wire:navigate>Asignación</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('releases')" :current="request()->routeIs('releases*')"
-                        wire:navigate>Liberación</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('disposals')" :current="request()->routeIs('disposals*')"
-                        wire:navigate>Baja de Equipo</flux:sidebar.item>
+                    @can('view_assignment')
+                        <flux:sidebar.item :href="route('assignments')" :current="request()->routeIs('assignments*')"
+                            wire:navigate>Asignación</flux:sidebar.item>
+                    @endcan
+                    @can('view_release')
+                        <flux:sidebar.item :href="route('releases')" :current="request()->routeIs('releases*')"
+                            wire:navigate>Liberación</flux:sidebar.item>
+                    @endcan
+                    @can('create_disposal')
+                        <flux:sidebar.item :href="route('disposals')" :current="request()->routeIs('disposals*')"
+                            wire:navigate>Baja de Equipo</flux:sidebar.item>
+                    @endcan
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="document-chart-bar" heading="Reportes" class="grid"
@@ -55,19 +75,24 @@
                         wire:navigate>Listado de Equipos</flux:sidebar.item>
                 </flux:sidebar.group>
 
-                <flux:sidebar.group expandable icon="lock-closed" heading="Seguridad" class="grid"
-                    :expanded="request()->is('security/*')">
-                    <flux:sidebar.item :href="route('users')" :current="request()->routeIs('users')" wire:navigate>
-                        Usuarios</flux:sidebar.item>
-                    <flux:sidebar.item :href="route('roles')" :current="request()->routeIs('roles')" wire:navigate>
-                        Roles</flux:sidebar.item>
-                    <flux:sidebar.item href="#">Permisos</flux:sidebar.item>
-                </flux:sidebar.group>
+                @role('admin')
+                    <flux:sidebar.group expandable icon="lock-closed" heading="Seguridad" class="grid"
+                        :expanded="request()->is('security/*')">
+                        <flux:sidebar.item :href="route('users')" :current="request()->routeIs('users')" wire:navigate>
+                            Usuarios</flux:sidebar.item>
+                        <flux:sidebar.item :href="route('roles')" :current="request()->routeIs('roles')" wire:navigate>
+                            Roles</flux:sidebar.item>
+                        <flux:sidebar.item :href="route('permissions')" :current="request()->routeIs('permissions')">
+                            Permisos</flux:sidebar.item>
+                    </flux:sidebar.group>
+                @endrole
 
-                <flux:sidebar.item icon="cog" :href="route('settings')" :current="request()->routeIs('settings')"
-                    wire:navigate>
-                    Configuración
-                </flux:sidebar.item>
+                @can('edit_setup')
+                    <flux:sidebar.item icon="cog" :href="route('settings')" :current="request()->routeIs('settings')"
+                        wire:navigate>
+                        Configuración
+                    </flux:sidebar.item>
+                @endcan
             </flux:sidebar.nav>
 
             <flux:spacer />

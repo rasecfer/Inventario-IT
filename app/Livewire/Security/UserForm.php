@@ -61,7 +61,7 @@ class UserForm extends Component
         ];
 
         if ($this->isEditing) {
-            $rules['email'] = ['required', 'email', Rule::unique('users')->ignore($this->user - Sid)];
+            $rules['email'] = ['required', 'email', Rule::unique('users')->ignore($this->user->id)];
         } else {
             $rules['email'] = ['required', 'email', Rule::unique('users')];
         }
@@ -96,7 +96,7 @@ class UserForm extends Component
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->role_id = $user->roles->first()->pluck('id');
+        $this->role_id = $user->roles->first()->id;
         $this->isEditing = true;
         $this->isOpen = true;
     }

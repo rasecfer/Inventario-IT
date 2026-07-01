@@ -120,6 +120,9 @@ class DisposalCreate extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('create_disposal')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.process.disposal-create', [
             'devices' => $this->devices
         ]);

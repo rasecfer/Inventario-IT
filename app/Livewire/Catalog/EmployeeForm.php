@@ -145,6 +145,9 @@ class EmployeeForm extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('create_employee') || ! auth()->user()->can('edit_employee')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.employee-form', [
             'departments' => $this->departments
         ]);

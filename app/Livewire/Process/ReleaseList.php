@@ -44,6 +44,9 @@ class ReleaseList extends Component
     }
     public function render()
     {
+        if (! auth()->user()->can('view_release')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.process.release-list', [
             'releases' => $this->releases
         ]);

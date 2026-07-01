@@ -16,6 +16,7 @@ use App\Livewire\Process\DisposalCreate;
 use App\Livewire\Process\ReleaseCreate;
 use App\Livewire\Process\ReleaseList;
 use App\Livewire\Reports\DeviceListing;
+use App\Livewire\Security\PermissionForm;
 use App\Livewire\Security\RoleForm;
 use App\Livewire\Security\UserForm;
 use App\Livewire\SettingForm;
@@ -53,6 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::group(['middleware' => 'role:admin'], function () {
         Route::get('security/users', UserForm::class)->name('users');
         Route::get('security/roles', RoleForm::class)->name('roles');
+        Route::get('security/permissions', PermissionForm::class)->name('permissions');
     });
 });
 

@@ -93,6 +93,9 @@ class SettingForm extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('edit_setup')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.setting-form');
     }
 }

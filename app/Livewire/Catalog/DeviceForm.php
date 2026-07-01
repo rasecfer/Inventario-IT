@@ -122,6 +122,9 @@ class DeviceForm extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('create_device') || ! auth()->user()->can('edit_device')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.device-form', [
             'deviceModels' => $this->deviceModels,
             'leases' => $this->leases

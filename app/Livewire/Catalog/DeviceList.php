@@ -40,6 +40,9 @@ class DeviceList extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('view_device')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.device-list', [
             'devices' => $this->devices
         ]);

@@ -94,6 +94,9 @@ class ClassificationForm extends Component
     }
     public function render()
     {
+        if (! auth()->user()->can('view_classification')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.classification-form', [
             'classifications' => $this->classifications
         ]);

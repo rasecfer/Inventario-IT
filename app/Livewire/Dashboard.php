@@ -25,7 +25,7 @@ class Dashboard extends Component
 
     public function loadData()
     {
-        $this->leases = Lease::where('end_date', '>', now())->get();
+        $this->leases = Lease::where('end_date', '>', now())->take(3)->get();
 
         $this->available_devices = Device::where('status', DeviceStatus::Available)->get()->count();
 

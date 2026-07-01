@@ -47,6 +47,9 @@ class AssignmentList extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('view_assignment')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.process.assignment-list', [
             'assignments' => $this->assignments
         ]);

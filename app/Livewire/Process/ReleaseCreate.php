@@ -128,6 +128,9 @@ class ReleaseCreate extends Component
     }
     public function render()
     {
+        if (! auth()->user()->can('create_release')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.process.release-create', [
             'assignment_details' => $this->assignment_details
         ]);

@@ -95,6 +95,9 @@ class BrandForm extends Component
 
     public function render()
     {
+        if (! auth()->user()->can('view_brand')) {
+            abort(403, 'Acceso no autorizado!');
+        }
         return view('livewire.catalog.brand-form', [
             'brands' => $this->brands
         ]);

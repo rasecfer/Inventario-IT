@@ -19,7 +19,7 @@ class RoleForm extends Component
     #[Computed]
     public function roles()
     {
-        return Role::all();
+        return Role::where('name', '!=', 'admin')->get();
     }
 
     public function newRole(): void
