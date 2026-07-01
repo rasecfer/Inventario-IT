@@ -56,8 +56,9 @@
                 </flux:sidebar.group>
 
                 <flux:sidebar.group expandable icon="lock-closed" heading="Seguridad" class="grid"
-                    :expanded="false">
-                    <flux:sidebar.item href="#">Usuarios</flux:sidebar.item>
+                    :expanded="request()->is('security/*')">
+                    <flux:sidebar.item :href="route('users')" :current="request()->routeIs('users')" wire:navigate>
+                        Usuarios</flux:sidebar.item>
                     <flux:sidebar.item href="#">Permisos</flux:sidebar.item>
                 </flux:sidebar.group>
 

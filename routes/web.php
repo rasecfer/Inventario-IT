@@ -16,6 +16,7 @@ use App\Livewire\Process\DisposalCreate;
 use App\Livewire\Process\ReleaseCreate;
 use App\Livewire\Process\ReleaseList;
 use App\Livewire\Reports\DeviceListing;
+use App\Livewire\Security\UserForm;
 use App\Livewire\SettingForm;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('processes/disposals', DisposalCreate::class)->name('disposals');
 
     Route::get('reports/listing', DeviceListing::class)->name('listing');
+
+    Route::group(['middleware' => 'role:admin'], function () {
+        Route::get('security/users', UserForm::class)->name('users');
+    });
 });
 
 // require __DIR__.'/settings.php';
