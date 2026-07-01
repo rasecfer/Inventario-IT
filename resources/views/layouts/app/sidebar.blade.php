@@ -59,6 +59,8 @@
                     :expanded="request()->is('security/*')">
                     <flux:sidebar.item :href="route('users')" :current="request()->routeIs('users')" wire:navigate>
                         Usuarios</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('roles')" :current="request()->routeIs('roles')" wire:navigate>
+                        Roles</flux:sidebar.item>
                     <flux:sidebar.item href="#">Permisos</flux:sidebar.item>
                 </flux:sidebar.group>
 
