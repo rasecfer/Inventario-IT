@@ -78,7 +78,7 @@ class DisposalCreate extends Component
 
                 $disposal = Disposal::create($data);
 
-                $line = 0;
+                $line = 1;
 
                 foreach ($this->devicesCol as $deviceCol) {
                     $data_detail = [

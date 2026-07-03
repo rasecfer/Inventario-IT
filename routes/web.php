@@ -15,6 +15,7 @@ use App\Livewire\Process\AssignmentList;
 use App\Livewire\Process\DisposalCreate;
 use App\Livewire\Process\ReleaseCreate;
 use App\Livewire\Process\ReleaseList;
+use App\Livewire\Reports\DeviceHistory;
 use App\Livewire\Reports\DeviceListing;
 use App\Livewire\Security\PermissionForm;
 use App\Livewire\Security\RoleForm;
@@ -50,6 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('processes/disposals', DisposalCreate::class)->name('disposals');
 
     Route::get('reports/listing', DeviceListing::class)->name('listing');
+    Route::get('reports/history', DeviceHistory::class)->name('history');
 
     Route::group(['middleware' => 'role:admin'], function () {
         Route::get('security/users', UserForm::class)->name('users');

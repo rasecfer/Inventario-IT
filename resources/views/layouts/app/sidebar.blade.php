@@ -73,6 +73,8 @@
                     :expanded="request()->is('reports/*')">
                     <flux:sidebar.item :href="route('listing')" :current="request()->routeIs('listing')"
                         wire:navigate>Listado de Equipos</flux:sidebar.item>
+                    <flux:sidebar.item :href="route('history')" :current="request()->routeIs('history')"
+                        wire:navigate>Historial de Equipo</flux:sidebar.item>
                 </flux:sidebar.group>
 
                 @role('admin')

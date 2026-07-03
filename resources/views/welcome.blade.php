@@ -185,7 +185,7 @@
 
                     </h1>
                     <p class="mb-8 text-lg text-blue-100/80 dark:text-slate-300">
-                        Inventario de Hardware TI
+                        Inventario de Hardware IT
                     </p>
 
                     <!-- Feature highlights -->
@@ -217,7 +217,7 @@
                             </div>
                             <div>
                                 <p class="font-medium text-white">Asignación y Liberación</p>
-                                <p class="text-sm text-blue-100/60">Sepa quién tiene cada dispositivo</p>
+                                <p class="text-sm text-blue-100/60">Conozca quién tiene cada dispositivo</p>
                             </div>
                         </div>
                     </div>
